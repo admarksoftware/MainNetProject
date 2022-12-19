@@ -9,12 +9,6 @@
 
 ML.NET AutoML API is basically a set of libraries packaged as a NuGet package you can use from your .NET code. AutoML eliminates the task of selecting different algorithms, hyperparameters. AutoML will intelligently generate many combinations of algorithms and hyperparameters and will find high quality models for you.
 -------------------------------------------------------
-## Translations of Samples:
-- [Chinese Simplified](https://github.com/feiyun0112/machinelearning-samples.zh-cn)
-
-# Learn more
-
-See [ML.NET Guide](https://docs.microsoft.com/en-us/dotnet/machine-learning/) for detailed information on tutorials, ML basics, etc.
 
 # API reference
 
