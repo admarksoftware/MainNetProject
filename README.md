@@ -1,5 +1,5 @@
 
-# ML.NET Samples
+# ML.NET Aegirsoft
 
 [ML.NET](https://www.microsoft.com/net/learn/apps/machine-learning-and-ai/ml-dotnet) is a cross-platform open-source machine learning framework that makes machine learning accessible to .NET developers.
 
