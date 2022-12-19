@@ -8,16 +8,6 @@
 **THESE SAMPLES USE THE 0.1.x VERSION OF THE AUTOML API. WHILE THESE APIS STILL WORK IN VERSION 0.2.x WE RECOMMEND USING THE NEW APIS INTRODUCED IN 0.2.x AND LATER. FOR 0.2.x SAMPLES, SEE [ML.NET 2.0 Samples](samples/csharp/getting-started/MLNET2/README.md)**. 
 
 ML.NET AutoML API is basically a set of libraries packaged as a NuGet package you can use from your .NET code. AutoML eliminates the task of selecting different algorithms, hyperparameters. AutoML will intelligently generate many combinations of algorithms and hyperparameters and will find high quality models for you.
-
-| AutoML API samples                    |
-|----------------------------------|
-| [Binary Classification sample](/samples/csharp/getting-started/BinaryClassification_AutoML) |
-| [MultiClass Classification sample](/samples/csharp/getting-started/MulticlassClassification_AutoML) |
-| [Ranking sample](/samples/csharp/getting-started/Ranking_AutoML/Ranking) |
-| [Regression sample](/samples/csharp/getting-started/Regression_AutoML) |
-| [Advanced experiment sample](/samples/csharp/getting-started/AdvancedExperiment_AutoML) |
-
-
 -------------------------------------------------------
 ## Translations of Samples:
 - [Chinese Simplified](https://github.com/feiyun0112/machinelearning-samples.zh-cn)
