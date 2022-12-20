@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Kredi Başvurusu</title>
+</head>
+
+<body>
+<div class="container" style="margin-top: 15px;">
+    <div class="row">
+
+        <div class="col-12">
+            <div class="alert alert-success" role="alert" id="postResultSuccess" style="display: none">
+
+            </div>
+            <div class="alert alert-danger" role="alert" id="postResultError" style="display: none">
+
+            </div>
+            <form action="" method="post" id="userForm">
+                <div class="col-12"><h1>Bilgilerinizi Giriniz</h1></div>
+                <br>
+                <div class="form-group">
+                    <label>Tc Kimlik Numarası</label>
+                    <input type="text" class="form-control" name="identity" placeholder="Tc Kimlik Numarası Giriniz" required />
+                </div>
+                <div class="form-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" class="form-control" name="name" placeholder="Ad Soyad Giriniz" required />
+                </div>
+                <div class="form-group">
+                    <label>Aylık Gelir</label>
+                    <input type="text" class="form-control" name="income" placeholder="Aylık Gelirinizi Giriniz" required />
+                </div>
+                <div class="form-group">
+                    <label>Telefon Numarası</label>
+                    <input type="tel" class="form-control" name="phone" placeholder="Telefon Numarası Giriniz" required />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Hesapla</button>
+                </div>
+            </form>
+            <div class="form-group" style="display: none" id="new_button">
+                <button  class="btn btn-primary" >Yeni Başvuru</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    $( document ).ready(function() {
+
+        // SUBMIT FORM
+        $("#userForm").submit(function(event) {
+            // Prevent the form from submitting via the browser.
+            event.preventDefault();
+            ajaxPost();
+        });
+    $("#new_button").click(function () {
+        location.reload()
+    })
+
+        function ajaxPost(){
+
+            // PREPARE FORM DATA
+            var formData = {
+                identity : $("input[name=identity]").val(),
+                name     : $("input[name=name]").val(),
+                inCome   : $("input[name=income]").val(),
+                phone    : $("input[name=phone]").val()
+            }
+
+            // DO POST
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : window.location + "api/calculate",
+                data : JSON.stringify(formData),
+                dataType : 'json',
+                success : function(result) {
+                    if(result.creditStatus == 1){
+                        $("#userForm").css("display","none");
+                        $("#postResultSuccess,#new_button").css("display","block");
+                        $("#postResultSuccess").html('<p> Sayın '+result.name+'; <br> <br>'+result.creditAmount+' Tutarında Kredi Alabilirsiniz.</p>');
+
+                        if (result.inCome >= 5000 && result.creditScore >= 500 && result.creditScore<= 1000){
+                            $("#postResultSuccess").append("<p style='color:black;'><strong>Not:</strong> Kredi Skoru 500 - 1000 arası ve aylık gelirin 5000'den büyük olması durumu taskta belirtilmediği için bu mesaj verilmiştir.</p>");
+
+                        }
+                    }else{
+                        $("#userForm").css("display","none");
+                        $("#postResultError,#new_button").css("display","block");
+                        $("#postResultError").html("<p> Sayın "+result.name+" ; <br> <br>Kredi Başvurunuz Olumsuz Değerlendirilmiştir..</p>");
+                    }
+                    console.log(result);
+                },
+                error : function(e) {
+                    alert("Kullanıcı bulunamadı.!")
+                    console.log("ERROR: ", e);
+                }
+            });
+
+
+
+        }
+
+
+    })
+</script>
+</body>
+</html>
