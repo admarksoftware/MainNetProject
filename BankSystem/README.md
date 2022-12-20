@@ -1,2 +1,1 @@
-# Banka_Otomasyonu
-Python dilinde özellikle liste ve dosya yapısı kullanılarak yazılmış bir otomasyon sistemi
+Hasan Eren Banka Sistemi
